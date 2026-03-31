@@ -1,6 +1,6 @@
 {
-  "version": "2.0",
-  "description": "구조검토 스킬웹 — 도면 판독부터 검토서 생성까지",
+  "version": "3.0",
+  "description": "구조검토 스킬웹 — 도면 판독부터 12장 상세 검토서 생성까지",
   "categories": {
     "input": "설계조건 입력",
     "load": "하중 산정",
@@ -138,11 +138,19 @@
       "provides": ["detail-adequacy"],
       "tags": ["배근", "정착", "이음"]
     },
+    "report-standard": {
+      "file": "skills/report-standard.md",
+      "category": "output",
+      "description": "구조계산서 표준 양식 — 12장 목차, 작성규칙, 위반시 경고",
+      "requires": [],
+      "provides": ["report-toc-standard"],
+      "tags": ["표준", "양식", "목차", "12장"]
+    },
     "report-cover": {
       "file": "skills/report-cover.md",
       "category": "output",
       "description": "보고서 표지·개요·설계조건 작성",
-      "requires": ["design-condition"],
+      "requires": ["design-condition", "report-standard"],
       "provides": ["report-cover", "report-overview"],
       "tags": ["표지", "개요", "설계조건"]
     },
