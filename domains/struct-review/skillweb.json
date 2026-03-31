@@ -138,44 +138,100 @@
       "provides": ["detail-adequacy"],
       "tags": ["배근", "정착", "이음"]
     },
+    "report-cover": {
+      "file": "skills/report-cover.md",
+      "category": "output",
+      "description": "보고서 표지·개요·설계조건 작성",
+      "requires": ["design-condition"],
+      "provides": ["report-cover", "report-overview"],
+      "tags": ["표지", "개요", "설계조건"]
+    },
+    "report-load": {
+      "file": "skills/report-load.md",
+      "category": "output",
+      "description": "보고서 하중산정편 — 고정/활/풍/지진/조합 전체 산식",
+      "requires": ["load-combination"],
+      "provides": ["report-load-section"],
+      "tags": ["하중", "산식", "보고서"]
+    },
+    "report-member": {
+      "file": "skills/report-member.md",
+      "category": "output",
+      "description": "보고서 부재검토편 — 제원표+휨+전단 6단계 산식",
+      "requires": ["rc-slab", "rc-beam", "rc-column", "foundation", "retaining-wall"],
+      "provides": ["report-member-section"],
+      "tags": ["부재", "산식", "보고서"]
+    },
+    "report-serviceability": {
+      "file": "skills/report-serviceability.md",
+      "category": "output",
+      "description": "보고서 사용성편 — 균열폭+처짐 6단계 산식",
+      "requires": ["crack-deflection"],
+      "provides": ["report-serviceability-section"],
+      "tags": ["균열", "처짐", "보고서"]
+    },
+    "report-detail": {
+      "file": "skills/report-detail.md",
+      "category": "output",
+      "description": "보고서 배근상세편 — 철근비/정착/이음 산식",
+      "requires": ["detail-check"],
+      "provides": ["report-detail-section"],
+      "tags": ["배근", "정착", "보고서"]
+    },
+    "report-summary": {
+      "file": "skills/report-summary.md",
+      "category": "output",
+      "description": "보고서 종합판정편 — 전 항목 판정표+최종결론",
+      "requires": ["report-member", "report-serviceability", "report-detail"],
+      "provides": ["report-summary", "safety-judgment"],
+      "tags": ["종합", "판정", "보고서"]
+    },
+    "report-engineer": {
+      "file": "skills/report-engineer.md",
+      "category": "output",
+      "description": "보고서 기술사검토란 — 검토정보/의견/선서/QR",
+      "requires": ["report-summary"],
+      "provides": ["report-engineer-section"],
+      "tags": ["기술사", "날인", "QR"]
+    },
     "review-report": {
       "file": "skills/review-report.md",
       "category": "output",
-      "description": "구조계산서 생성 — 12장 표준양식, 전체 산식 포함",
-      "requires": ["crack-deflection", "detail-check", "foundation"],
+      "description": "구조계산서 조립 — 개별 편을 12장 구조로 조립",
+      "requires": ["report-cover", "report-load", "report-member", "report-serviceability", "report-detail", "report-summary", "report-engineer"],
       "provides": ["review-document", "safety-confirmation"],
-      "tags": ["검토서", "보고서", "확인서"]
+      "tags": ["조립", "검토서", "최종"]
     }
   },
   "templates": {
     "rc-building": {
       "file": "templates/rc-building.md",
       "description": "RC 건축물 전체 구조검토",
-      "blocks": ["drawing-reader", "design-condition", "load-dead", "load-live", "load-wind", "load-seismic", "load-combination", "rc-slab", "rc-beam", "rc-column", "foundation", "seismic-design", "crack-deflection", "detail-check", "review-report"],
+      "blocks": ["drawing-reader", "design-condition", "load-dead", "load-live", "load-wind", "load-seismic", "load-combination", "rc-slab", "rc-beam", "rc-column", "foundation", "seismic-design", "crack-deflection", "detail-check", "report-cover", "report-load", "report-member", "report-serviceability", "report-detail", "report-summary", "report-engineer", "review-report"],
       "tags": ["RC", "건축물", "전체"]
     },
     "foundation-only": {
       "file": "templates/foundation-only.md",
       "description": "기초 설계검토",
-      "blocks": ["drawing-reader", "design-condition", "load-dead", "load-live", "load-combination", "foundation", "review-report"],
+      "blocks": ["drawing-reader", "design-condition", "load-dead", "load-live", "load-combination", "foundation", "report-cover", "report-load", "report-member", "report-summary", "report-engineer", "review-report"],
       "tags": ["기초", "독립기초", "매트"]
     },
     "retaining-wall-only": {
       "file": "templates/retaining-wall-only.md",
       "description": "옹벽 구조검토 (L형/역L형/역T형/중력식)",
-      "blocks": ["drawing-reader", "wall-types", "design-condition", "load-dead", "load-seismic", "load-combination", "retaining-wall", "review-report"],
+      "blocks": ["drawing-reader", "wall-types", "design-condition", "load-dead", "load-seismic", "load-combination", "retaining-wall", "report-cover", "report-load", "report-member", "report-summary", "report-engineer", "review-report"],
       "tags": ["옹벽", "토압", "L형", "역L형"]
     },
     "flood-wall": {
       "file": "templates/flood-wall.md",
       "description": "홍수방지벽 구조검토 (수압+토압 양방향)",
-      "blocks": ["drawing-reader", "wall-types", "design-condition", "load-dead", "load-seismic", "load-combination", "retaining-wall", "review-report"],
+      "blocks": ["drawing-reader", "wall-types", "design-condition", "load-dead", "load-seismic", "load-combination", "retaining-wall", "report-cover", "report-load", "report-member", "report-summary", "report-engineer", "review-report"],
       "tags": ["홍수방지벽", "수압", "양방향"]
     },
     "seismic-evaluation": {
       "file": "templates/seismic-evaluation.md",
       "description": "내진성능평가 및 보강검토",
-      "blocks": ["drawing-reader", "design-condition", "load-seismic", "load-combination", "rc-column", "seismic-design", "review-report"],
+      "blocks": ["drawing-reader", "design-condition", "load-seismic", "load-combination", "rc-column", "seismic-design", "report-cover", "report-load", "report-member", "report-summary", "report-engineer", "review-report"],
       "tags": ["내진", "보강", "평가"]
     }
   }

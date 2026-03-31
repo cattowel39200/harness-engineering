@@ -1,0 +1,26 @@
+slug: struct-review
+name: AI 구조검토
+description: |
+  KDS/KCS 설계기준 기반 토목·건축 구조검토 자동화 도메인.
+  설계조건 입력부터 구조계산, 기준 검증, 검토서 생성까지
+  전 과정을 AI 스킬블록으로 수행합니다.
+version: "1.0"
+author: Harness Engineering
+status: active
+
+standards:
+  - KDS 41 12 00 (콘크리트구조 설계기준)
+  - KDS 41 17 00 (건축물 내진설계기준)
+  - KDS 41 20 00 (콘크리트구조 시공기준)
+  - KDS 41 31 00 (강구조 설계기준)
+  - KDS 11 50 00 (기초구조 설계기준)
+  - KDS 11 80 05 (옹벽 설계기준)
+  - KCS 14 20 00 (콘크리트 시공기준)
+
+structure_types:
+  - RC 구조 (슬래브, 보, 기둥)
+  - 기초 (독립, 연속, 매트, 말뚝)
+  - 옹벽 (중력식, 캔틸레버)
+  - 내진설계
+  - 강구조
+  - 가설구조물
