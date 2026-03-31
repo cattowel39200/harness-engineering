@@ -1,0 +1,22 @@
+# 현재 세션 상태
+session:
+  id: session-001
+  harness: biz-skill
+  created: 2026-03-31
+  status: active
+
+# 사용자 정보
+user:
+  idea_exists: null
+  business_stage: null
+  target_program: null
+  industry: null
+
+# 완료된 블록
+completed_blocks: []
+
+# 블록별 산출물 요약
+block_outputs: {}
+
+# 생성된 문서
+documents: []

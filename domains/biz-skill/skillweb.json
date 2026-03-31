@@ -1,0 +1,160 @@
+{
+  "version": "1.0",
+  "description": "사업화 스킬웹 — 아이디어 발굴부터 정부지원사업 신청·운영까지",
+  "categories": {
+    "discovery": "아이디어 발굴",
+    "planning": "사업 기획",
+    "application": "지원사업 신청",
+    "execution": "실행 계획",
+    "operation": "사업 운영"
+  },
+  "blocks": {
+    "trend-scan": {
+      "file": "blocks/trend-scan.md", "category": "discovery",
+      "description": "트렌드 탐색 — 정부 정책, 산업·기술 트렌드, 사회문제",
+      "requires": [], "provides": ["trend-report", "opportunity-list"],
+      "tags": ["트렌드", "정책", "기회"]
+    },
+    "problem-finding": {
+      "file": "blocks/problem-finding.md", "category": "discovery",
+      "description": "문제 발견 — 고객 페인포인트, 시장 갭",
+      "requires": ["trend-scan"], "provides": ["problem-statement", "pain-points"],
+      "tags": ["문제", "페인포인트", "고객"]
+    },
+    "idea-generation": {
+      "file": "blocks/idea-generation.md", "category": "discovery",
+      "description": "아이디어 생성 — SCAMPER, 기술-시장 매트릭스",
+      "requires": ["problem-finding"], "provides": ["idea-candidates", "solution-concepts"],
+      "tags": ["아이디어", "발상", "솔루션"]
+    },
+    "idea-validation": {
+      "file": "blocks/idea-validation.md", "category": "discovery",
+      "description": "아이디어 검증 — 시장성·기술성·실현가능성 스코어링",
+      "requires": ["idea-generation"], "provides": ["validated-idea", "feasibility-score"],
+      "tags": ["검증", "평가", "스코어"]
+    },
+    "market-analysis": {
+      "file": "blocks/market-analysis.md", "category": "planning",
+      "description": "시장분석 — TAM/SAM/SOM, 경쟁사, 성장률",
+      "requires": ["idea-validation"], "provides": ["market-size", "competitor-analysis"],
+      "tags": ["시장", "TAM", "경쟁사"]
+    },
+    "business-model": {
+      "file": "blocks/business-model.md", "category": "planning",
+      "description": "비즈니스 모델 — BMC, 수익모델, 매출추정",
+      "requires": ["market-analysis"], "provides": ["bmc", "revenue-model"],
+      "tags": ["BMC", "수익모델", "매출"]
+    },
+    "target-customer": {
+      "file": "blocks/target-customer.md", "category": "planning",
+      "description": "고객 정의 — 페르소나, 세그먼트, 니즈맵",
+      "requires": ["market-analysis"], "provides": ["persona", "customer-segment"],
+      "tags": ["고객", "페르소나", "B2B"]
+    },
+    "competitive-edge": {
+      "file": "blocks/competitive-edge.md", "category": "planning",
+      "description": "차별화 전략 — USP, 진입장벽, IP방향",
+      "requires": ["market-analysis", "business-model"], "provides": ["usp", "moat"],
+      "tags": ["차별화", "USP", "해자"]
+    },
+    "gov-program-db": {
+      "file": "blocks/gov-program-db.md", "category": "application",
+      "description": "지원사업 DB — 주요 사업 요건·일정·심사기준",
+      "requires": [], "provides": ["program-list", "program-requirements"],
+      "tags": ["지원사업", "공고", "일정"]
+    },
+    "program-match": {
+      "file": "blocks/program-match.md", "category": "application",
+      "description": "지원사업 매칭 — 자격·업종별 최적 사업 추천",
+      "requires": ["idea-validation", "gov-program-db"], "provides": ["recommended-programs"],
+      "tags": ["매칭", "추천", "전략"]
+    },
+    "proposal-writing": {
+      "file": "blocks/proposal-writing.md", "category": "application",
+      "description": "사업계획서 — 심사항목별 작성 가이드",
+      "requires": ["market-analysis", "business-model", "competitive-edge", "program-match"],
+      "provides": ["proposal-document", "executive-summary"],
+      "tags": ["사업계획서", "심사", "작성"]
+    },
+    "budget-planning": {
+      "file": "blocks/budget-planning.md", "category": "application",
+      "description": "사업비 편성 — 비목별 기준, 인건비, 민간부담금",
+      "requires": ["tech-roadmap", "proposal-writing"], "provides": ["budget-table"],
+      "tags": ["사업비", "예산", "비목"]
+    },
+    "tech-roadmap": {
+      "file": "blocks/tech-roadmap.md", "category": "execution",
+      "description": "기술개발 계획 — TRL, 마일스톤, WBS",
+      "requires": ["idea-validation", "competitive-edge"], "provides": ["trl-plan", "dev-milestones"],
+      "tags": ["TRL", "로드맵", "개발계획"]
+    },
+    "prototype-plan": {
+      "file": "blocks/prototype-plan.md", "category": "execution",
+      "description": "MVP/프로토타입 — 범위, 일정, 데모",
+      "requires": ["tech-roadmap"], "provides": ["mvp-scope", "demo-scenario"],
+      "tags": ["MVP", "시제품", "데모"]
+    },
+    "ip-strategy": {
+      "file": "blocks/ip-strategy.md", "category": "execution",
+      "description": "지식재산권 — 특허, 상표, 선행기술조사",
+      "requires": ["competitive-edge", "tech-roadmap"], "provides": ["patent-plan"],
+      "tags": ["특허", "IP", "상표"]
+    },
+    "pitch-deck": {
+      "file": "blocks/pitch-deck.md", "category": "execution",
+      "description": "IR/발표자료 — 10슬라이드, Q&A 대비",
+      "requires": ["proposal-writing"], "provides": ["pitch-deck", "qa-prep"],
+      "tags": ["발표", "IR", "슬라이드"]
+    },
+    "team-building": {
+      "file": "blocks/team-building.md", "category": "operation",
+      "description": "팀 구성 — 조직도, RACI, 채용계획",
+      "requires": ["tech-roadmap"], "provides": ["org-chart", "hiring-plan"],
+      "tags": ["팀", "조직", "채용"]
+    },
+    "milestone-mgmt": {
+      "file": "blocks/milestone-mgmt.md", "category": "operation",
+      "description": "사업관리 — 협약, 보고, 정산, 후속연계",
+      "requires": ["proposal-writing", "budget-planning"], "provides": ["quarterly-report"],
+      "tags": ["보고", "정산", "평가"]
+    }
+  },
+  "templates": {
+    "startup-pre": {
+      "file": "templates/startup-pre.md",
+      "description": "예비창업패키지 (예비창업자, 최대 1억원)",
+      "blocks": ["trend-scan", "problem-finding", "idea-generation", "idea-validation", "market-analysis", "business-model", "target-customer", "gov-program-db", "program-match", "proposal-writing", "budget-planning", "pitch-deck"],
+      "tags": ["예비", "창업패키지"]
+    },
+    "startup-early": {
+      "file": "templates/startup-early.md",
+      "description": "초기창업패키지 (3년 이내, 최대 1억원)",
+      "blocks": ["market-analysis", "business-model", "target-customer", "competitive-edge", "gov-program-db", "program-match", "proposal-writing", "budget-planning", "tech-roadmap", "prototype-plan", "pitch-deck"],
+      "tags": ["초기", "창업패키지"]
+    },
+    "tips": {
+      "file": "templates/tips.md",
+      "description": "TIPS (기술창업, 최대 5억원+투자)",
+      "blocks": ["market-analysis", "business-model", "competitive-edge", "ip-strategy", "gov-program-db", "program-match", "proposal-writing", "budget-planning", "tech-roadmap", "prototype-plan", "pitch-deck", "team-building"],
+      "tags": ["TIPS", "기술창업"]
+    },
+    "rnd-sme": {
+      "file": "templates/rnd-sme.md",
+      "description": "중기부 R&D (기술개발, 최대 3억원)",
+      "blocks": ["market-analysis", "competitive-edge", "gov-program-db", "program-match", "proposal-writing", "budget-planning", "tech-roadmap", "ip-strategy", "milestone-mgmt"],
+      "tags": ["R&D", "기술개발"]
+    },
+    "local-gov": {
+      "file": "templates/local-gov.md",
+      "description": "지자체 창업지원 (지역 기반, 2천만~5천만원)",
+      "blocks": ["trend-scan", "problem-finding", "idea-generation", "idea-validation", "market-analysis", "business-model", "gov-program-db", "program-match", "proposal-writing", "budget-planning", "pitch-deck"],
+      "tags": ["지자체", "지역"]
+    },
+    "leap-package": {
+      "file": "templates/leap-package.md",
+      "description": "도약패키지 (3~7년 기업, 최대 3억원)",
+      "blocks": ["market-analysis", "business-model", "competitive-edge", "gov-program-db", "program-match", "proposal-writing", "budget-planning", "tech-roadmap", "ip-strategy", "team-building", "milestone-mgmt"],
+      "tags": ["도약", "스케일업"]
+    }
+  }
+}

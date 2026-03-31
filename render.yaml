@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: harness-api
+    runtime: python
+    buildCommand: cd backend && pip install fastapi uvicorn anthropic sqlalchemy aiosqlite python-jose passlib bcrypt pydantic pydantic-settings pyyaml python-multipart sse-starlette httpx
+    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        value: sqlite+aiosqlite:///./harness.db

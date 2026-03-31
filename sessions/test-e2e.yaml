@@ -1,0 +1,135 @@
+# E2E 테스트 세션 — 3역할 연동 시나리오
+# 이 파일로 전체 워크플로우 진행 상태를 추적합니다
+
+test_session:
+  name: "3역할 연동 E2E 테스트"
+  created: 2026-03-31
+  status: ready
+
+# 시간순 전체 흐름
+steps:
+  - id: T1
+    role: engineer
+    action: "회원가입 (자격정보 제출)"
+    page: /register
+    status: not_started
+    depends_on: []
+
+  - id: T2
+    role: admin
+    action: "기술사 자격 확인 → 승인"
+    page: /admin/engineers
+    status: not_started
+    depends_on: [T1]
+
+  - id: T3
+    role: client
+    action: "회원가입 → 로그인"
+    page: /register → /login
+    status: not_started
+    depends_on: []
+
+  - id: T4
+    role: client
+    action: "새 의뢰 등록 (RC 구조검토)"
+    page: /dashboard/projects/new
+    status: not_started
+    depends_on: [T3]
+
+  - id: T5
+    role: client
+    action: "견적 확인 → 결제 (에스크로)"
+    page: /dashboard/projects/new (step4)
+    status: not_started
+    depends_on: [T4]
+
+  - id: T6
+    role: system
+    action: "AI 구조검토 자동 수행"
+    page: (하네스 엔진)
+    status: not_started
+    depends_on: [T5]
+
+  - id: T7
+    role: system
+    action: "기술사 배정 → 알림"
+    page: (자동)
+    status: not_started
+    depends_on: [T6]
+
+  - id: T8
+    role: engineer
+    action: "검토 대기열에서 건 수락"
+    page: /engineer/reviews
+    status: not_started
+    depends_on: [T2, T7]
+
+  - id: T9
+    role: engineer
+    action: "AI 결과 확인 → 체크리스트 → 승인·날인"
+    page: /engineer/reviews/[id]
+    status: not_started
+    depends_on: [T8]
+
+  - id: T10
+    role: system
+    action: "날인 검토서 생성 → 고객 알림"
+    page: (자동)
+    status: not_started
+    depends_on: [T9]
+
+  - id: T11
+    role: client
+    action: "검토서 확인 → 완료 확인"
+    page: /dashboard/projects/[id]
+    status: not_started
+    depends_on: [T10]
+
+  - id: T12
+    role: system
+    action: "에스크로 해제 → 정산 대기"
+    page: (자동)
+    status: not_started
+    depends_on: [T11]
+
+  - id: T13
+    role: admin
+    action: "정산 조건 확인 → 정산 처리"
+    page: /admin/payments
+    status: not_started
+    depends_on: [T12]
+
+  - id: T14
+    role: engineer
+    action: "정산 수령 확인"
+    page: /engineer/earnings
+    status: not_started
+    depends_on: [T13]
+
+  - id: T15
+    role: client
+    action: "리뷰 작성 (별점 + 후기)"
+    page: /dashboard/projects/[id]
+    status: not_started
+    depends_on: [T11]
+
+  - id: T16
+    role: admin
+    action: "품질 모니터링 → 리뷰 확인"
+    page: /admin/dashboard
+    status: not_started
+    depends_on: [T15]
+
+# 구조검토 블록 연결 포인트 (향후)
+struct_review_integration:
+  trigger: "T6 (AI 구조검토 수행)"
+  domain: struct-review
+  harness: struct-review.harness.yaml
+  skill_blocks:
+    - rc-slab-review
+    - rc-beam-review
+    - rc-column-review
+    - foundation-review
+    - retaining-wall-review
+    - seismic-review
+  output: "검토서 초안 (AI) → T7에서 기술사에게 전달"
