@@ -98,6 +98,70 @@
       "provides": ["column-adequacy", "column-reinforcement"],
       "tags": ["기둥", "RC", "좌굴"]
     },
+    "gravity-wall": {
+      "file": "skills/gravity-wall.md",
+      "category": "member",
+      "description": "중력식/반중력식 옹벽 — 자중안정, 압축응력",
+      "requires": ["load-combination", "wall-types"],
+      "provides": ["gravity-wall-adequacy"],
+      "tags": ["중력식", "반중력식", "무근"]
+    },
+    "culvert-box": {
+      "file": "skills/culvert-box.md",
+      "category": "member",
+      "description": "BOX 암거 — DB하중, 슬래브/벽체 휨/전단",
+      "requires": ["load-combination"],
+      "provides": ["culvert-adequacy"],
+      "tags": ["BOX", "암거", "DB하중"]
+    },
+    "culvert-arch": {
+      "file": "skills/culvert-arch.md",
+      "category": "member",
+      "description": "ARCH 암거 / 파이프 — 파쇄하중, 좌굴",
+      "requires": ["load-combination"],
+      "provides": ["arch-adequacy"],
+      "tags": ["ARCH", "파이프", "좌굴"]
+    },
+    "masonry-wall": {
+      "file": "skills/masonry-wall.md",
+      "category": "member",
+      "description": "석축 쌓기 — 전도/활동/지지력 (자중안정)",
+      "requires": ["load-combination"],
+      "provides": ["masonry-adequacy"],
+      "tags": ["석축", "찰쌓기", "메쌓기"]
+    },
+    "rubble-wall": {
+      "file": "skills/rubble-wall.md",
+      "category": "member",
+      "description": "전석 쌓기 — 공극률, 배수, 자중안정",
+      "requires": ["load-combination"],
+      "provides": ["rubble-adequacy"],
+      "tags": ["전석", "메쌓기"]
+    },
+    "msew-external": {
+      "file": "skills/msew-external.md",
+      "category": "member",
+      "description": "보강토옹벽 외적안정 — 전도/활동/지지력/원호활동",
+      "requires": ["load-combination"],
+      "provides": ["msew-external-adequacy"],
+      "tags": ["보강토", "외적안정"]
+    },
+    "msew-internal": {
+      "file": "skills/msew-internal.md",
+      "category": "member",
+      "description": "보강토옹벽 내적안정 — 인발/파단/연결부",
+      "requires": ["msew-external"],
+      "provides": ["msew-internal-adequacy"],
+      "tags": ["보강토", "내적안정", "인발"]
+    },
+    "input-presets": {
+      "file": "skills/input-presets.md",
+      "category": "input",
+      "description": "프리셋 — 재료/토질/지반/지진/석재/보강재",
+      "requires": [],
+      "provides": ["material-presets", "soil-presets", "seismic-presets"],
+      "tags": ["프리셋", "재료", "토질"]
+    },
     "foundation": {
       "file": "skills/foundation.md",
       "category": "member",
